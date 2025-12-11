@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deploydddment
+kind: Deployment
 metadata:
   name: hello-world
   namespace: default
