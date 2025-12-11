@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deplddoyment
 metadata:
   name: hello-world
   namespace: default
@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: nginx:dsfrsfsdfdsf
+        image: nginx:latest
         ports:
         - containerPort: 80
