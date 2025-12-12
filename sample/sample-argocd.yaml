@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   # 🎯 STEP 3: Annotation to subscribe to the sync-failed alert on a specific channel
   annotations:
-    notifications.argoproj.io/subscribe.on-sync-failed.slack: '#ops-alerts' # <-- CHANGE THIS to your Slack Channel
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: '#aicore-grafana-alerts' # <-- CHANGE THIS to your Slack Channel
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
