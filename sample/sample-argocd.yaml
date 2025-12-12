@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   # 🎯 STEP 3: Annotation to subscribe to the sync-failed alert on a specific channel
   annotations:
-    notifications.argoproj.io/subscribe.on-sync-failed.slack: '#aicore-grafana-alerts' # <-- CHANGE THIS to your Slack Channel
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: '#ops-alerts' # <-- CHANGE THIS to your Slack Channel
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -15,9 +15,9 @@ spec:
     namespace: web-app-prod 
   source:
     # 📝 CHANGE THIS to your actual Git repository URL
-    repoURL: https://github.com/navneet1075/argocd-sample.git
+    repoURL: https://github.com/your-org/app-repo.git 
     # The folder containing the deployment.yaml and service.yaml
-    path: sample 
+    path: manifests 
     targetRevision: HEAD 
   project: default
   syncPolicy:
