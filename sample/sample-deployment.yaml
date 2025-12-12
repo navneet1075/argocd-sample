@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployddddment
 metadata:
-  name: hello-world
-  namespace: default
+  name: web-app-deployment
+  labels:
+    app: my-web-app
 spec:
-  replicas: 1
+  # Ensure 3 replicas of the application are running
+  replicas: 3
   selector:
     matchLabels:
-      app: hello-world
+      app: my-web-app
   template:
     metadata:
       labels:
-        app: hello-world
+        app: my-web-app
     spec:
       containers:
-      - name: hello-world
+      - name: web-app-container
+        # Use a simple, public image like Nginx
         image: nginx:latest
         ports:
         - containerPort: 80

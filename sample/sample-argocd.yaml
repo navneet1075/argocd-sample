@@ -1,16 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sample-argocd-app
+  name: web-app-prod
+  namespace: argocd
+  # 🎯 STEP 3: Annotation to subscribe to the sync-failed alert on a specific channel
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: '#aicore-grafana-alerts' # <-- CHANGE THIS to your Slack Channel
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    # The namespace where the Kubernetes manifests will be deployed
+    namespace: web-app-prod 
   source:
+    # 📝 CHANGE THIS to your actual Git repository URL
     repoURL: https://github.com/navneet1075/argocd-sample.git
-    path: sample
-    targetRevision: HEAD
-
+    # The folder containing the deployment.yaml and service.yaml
+    path: sample 
+    targetRevision: HEAD 
+  project: default
   syncPolicy:
     automated:
       prune: true
