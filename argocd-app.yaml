@@ -1,0 +1,48 @@
+# argocd-application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-app
+  namespace: argocd
+  annotations:
+    # Slack notifications on sync failure
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: aicore-grafana-alerts
+spec:
+  project: default
+  
+  # Source: Your Git repository containing the manifests
+  source:
+    repoURL: https://github.com/navneet1075/argocd-sample.git
+    targetRevision: main
+    path: sample-app
+  # Destination: Deploy to default namespace
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  
+  # Sync policy
+  syncPolicy:
+    automated:
+      # Auto-sync when git changes detected
+      prune: true
+      # Auto-heal when cluster state drifts
+      selfHeal: true
+    
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+    
+    # Retry on failure
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  
+  # Ignore differences (optional)
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
