@@ -1,5 +1,5 @@
 # argocd-application.yaml
-apiVersion: argoproj.io/v1alpha1
+apiVersion: argoproj.io/invalid
 kind: Application
 metadata:
   name: sample-app
