@@ -15,9 +15,9 @@ spec:
     namespace: web-app-prod 
   source:
     # 📝 CHANGE THIS to your actual Git repository URL
-    repoURL: https://github.com/your-org/app-repo.git 
+    repoURL: https://github.com/navneet1075/argocd-sample.git
     # The folder containing the deployment.yaml and service.yaml
-    path: manifests 
+    path: sample 
     targetRevision: HEAD 
   project: default
   syncPolicy:
